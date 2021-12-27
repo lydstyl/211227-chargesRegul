@@ -1,12 +1,8 @@
 import { charges } from '../src/charges'
+import { testData1 } from '../data/data'
 
-const GARBAGE_DATA = {
-    garbageCharge: 1440,
-    garbageRate: 1 / 6,
-}
-
-const GARBAGE = charges(GARBAGE_DATA)
-const GARBAGE_CHARGE = charges(GARBAGE_DATA).garbage()
+const GARBAGE = charges(testData1)
+const GARBAGE_CHARGE = GARBAGE.garbage()
 
 describe('Garbage.', () => {
     it('Can calculate charges.', () => {

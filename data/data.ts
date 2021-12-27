@@ -16,7 +16,7 @@ export interface Data {
 }
 
 export const testData1: Data = {
-    garbage: { garbageCharge: 1, garbageRate: 1 },
+    garbage: { garbageCharge: 1440, garbageRate: 1 / 6 },
     electricity: {
         from: '01/01/2021',
         to: '31/12/2021',
