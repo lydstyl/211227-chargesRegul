@@ -1,1 +1,3 @@
 -   curl https://get.volta.sh | bash or curl https://get.volta.sh | zsh
+-   npm i
+-   npm run test:watch
