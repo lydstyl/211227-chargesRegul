@@ -10,9 +10,29 @@ export interface ElectricityData {
     rate: number
 }
 
+export interface Reading {
+    date: string // frDate
+    index: number // m3
+}
+
+export interface MeterReading {
+    first: Reading
+    second: Reading
+}
+
+export interface WaterInvoice {
+    price: number
+    consumption: number // m3
+}
+
+export interface WaterData {
+    waterInvoices: WaterInvoice[]
+    meterReadings: MeterReading[] // first and second read for each water meter
+}
 export interface Data {
     garbage: GarbageData
     electricity: ElectricityData
+    water: WaterData
 }
 
 export const testData1: Data = {
@@ -23,6 +43,7 @@ export const testData1: Data = {
         amounts: [100, 265],
         rate: 1 / 2,
     },
+    water: { waterInvoices: [], meterReadings: [] },
 }
 
 export const testData2: Data = {
@@ -33,6 +54,7 @@ export const testData2: Data = {
         amounts: [26.1, 26.85, 28.63, 16.46],
         rate: 1 / 4,
     },
+    water: { waterInvoices: [], meterReadings: [] },
 }
 
 const data = {
