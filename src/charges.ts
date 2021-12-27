@@ -11,8 +11,8 @@ const hasGarbage = (garbageCharge: number, rate: number) => ({
     garbageDetail: () => getGarbageChargeDetail(garbageCharge, rate),
 })
 
-const hasElectricity = (data: ElectricityData) => ({
-    electricity: () => {
+const hasElectricity = (data: ElectricityData) => {
+    const electricity = () => {
         const { from, to, amounts, rate } = data
 
         const days = getDays(frToDate(from), frToDate(to))
@@ -20,9 +20,14 @@ const hasElectricity = (data: ElectricityData) => ({
         const electricityPerMonth = totalElectricityPerMonth(totalAmount, days)
 
         return electricityPerMonth * rate
-    },
-    electricityDetail: () => ({}),
-})
+    }
+
+    return {
+        electricity,
+        electricityDetail: () => `ÉLECTRICITÉ
+    chargesÉlectricité = ${electricity()}`,
+    }
+}
 
 export const charges = (data: Data) => ({
     ...hasGarbage(data.garbage.garbageCharge, data.garbage.garbageRate),
