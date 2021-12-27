@@ -1,0 +1,1 @@
+-   curl https://get.volta.sh | bash or curl https://get.volta.sh | zsh
