@@ -43,7 +43,19 @@ export const testData1: Data = {
         amounts: [100, 265],
         rate: 1 / 2,
     },
-    water: { waterInvoices: [], meterReadings: [] },
+    water: {
+        waterInvoices: [
+            { price: 10, consumption: 20 },
+            { price: 20, consumption: 20 },
+            { price: 30, consumption: 20 },
+        ],
+        meterReadings: [
+            {
+                first: { date: '01/09/2021', index: 10 },
+                second: { date: '01/01/2022', index: 22 },
+            },
+        ],
+    },
 }
 
 export const testData2: Data = {
@@ -54,7 +66,23 @@ export const testData2: Data = {
         amounts: [26.1, 26.85, 28.63, 16.46],
         rate: 1 / 4,
     },
-    water: { waterInvoices: [], meterReadings: [] },
+    water: {
+        waterInvoices: [
+            { price: 86.8, consumption: 27 },
+            { price: 559.93, consumption: 94 },
+            { price: 646.73, consumption: 121 },
+        ],
+        meterReadings: [
+            {
+                first: { date: '01/09/2021', index: 10 },
+                second: { date: '01/01/2022', index: 22 },
+            },
+            {
+                first: { date: '01/09/2021', index: 10 },
+                second: { date: '01/01/2022', index: 22 },
+            },
+        ],
+    },
 }
 
 const data = {
