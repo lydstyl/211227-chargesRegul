@@ -6,9 +6,8 @@ export const getGarbageChargeDetail = (
     rate: number
 ): string =>
     `ORDURES MÉNAGÈRES
-occupants = 6
+Nombre d'occupants = 6
 taux = 1 / occupants    
-chargesOrduresMénagères = (taxeOrdureMénagère / 12) * taux = (${garbageCharge} / 12) * ${rate}=${getGarbageCharge(
-        garbageCharge,
-        rate
-    )}`
+votre charge ordure ménagère = (taxe ordure ménagère / 12) x taux 
+= (${garbageCharge} / 12) x ${rate.toFixed(2)} 
+= ${getGarbageCharge(garbageCharge, rate).toFixed(2)} €`
