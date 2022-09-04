@@ -96,7 +96,7 @@ const houseHoldEstimate = 60 * 12
 
 export const allData: AllData = {
     forAllTenants: {
-        endDate: '31/12/2021',
+        endDate: '31/12/2022',
         garbage: {
             garbageCharge: 1403,
         },
@@ -141,26 +141,6 @@ export const allData: AllData = {
             electricity: { rate: garbageRate },
             household: { rate: householdRate },
         },
-        // {
-        //     name: 'Lebrun',
-        //     arrivalDate: '01/06/2021',
-        //     current: 25,
-
-        //     garbage: { garbageRate: 1 / 6 },
-        //     water: {
-        //         meterReadings: [
-        //             {
-        //                 first: { date: '01/09/2021', index: 10 },
-        //                 second: { date: '01/01/2022', index: 22 },
-        //             },
-        //             {
-        //                 first: { date: '01/09/2021', index: 10 },
-        //                 second: { date: '01/01/2022', index: 22 },
-        //             },
-        //         ],
-        //     },
-        //     electricity: { rate: 1 / 6 },
-        // },
     ],
 }
 

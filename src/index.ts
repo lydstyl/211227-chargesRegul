@@ -18,19 +18,19 @@ const mapData = (allData: AllData, tenant: Tenant): Data => ({
 })
 
 allData.tenants.forEach((tenant) => {
-    const separator = '\n-------------------------------------------\n\n'
     const data = mapData(allData, tenant)
+    const current: number = tenant.current
     const real: number =
         charges(data).garbage() +
         charges(data).electricity() +
         charges(data).water()
-    const current: number = tenant.current
     const difference = real - current
     const monthsOfLiving = getMonthOfLiving(
         tenant.arrivalDate,
         allData.forAllTenants.endDate
     )
     const debt = getDebt(difference, monthsOfLiving)
+    const separator = '\n-------------------------------------------\n\n'
 
     let txt = ``
 
