@@ -2,51 +2,38 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
 import { allData } from '../data/data'
-import { charges } from './charges'
+import { charges, Charges } from './charges'
 import getTenantData from './tenantData'
+import getRegul from './getRegul'
 import getNewChargesDetail from './getNewCharges'
 
 allData.tenants.forEach((tenant) => {
-    const { data, current, real, difference, monthsOfLiving, debt, separator } =
-        getTenantData(tenant)
+    const { data, separator } = getTenantData(tenant)
 
-    let txt = ``
+    function addSeparator(txt: string) {
+        return (txt += separator)
+    }
 
-    txt += separator
-    txt += `Votre nom : ${tenant.name}`
-    txt += separator
+    let txt = addSeparator('')
 
-    txt += charges(data).garbageDetail()
-    txt += separator
+    txt += addSeparator(`Votre nom : ${tenant.name}`)
 
-    txt += charges(data).electricityDetail()
-    txt += separator
+    const getChargesNames: string[] = [
+        'waterDetail',
+        'electricityDetail',
+        'garbageDetail',
+        'householdDetail',
+    ]
 
-    txt += charges(data).waterDetail()
-    txt += separator
+    const theCharges: Charges = charges(data)
 
-    txt += charges(data).householdDetail()
-    txt += separator
+    getChargesNames.forEach((getChargeName: string) => {
+        const theCurrentCharge = (theCharges as any)[getChargeName]()
+        txt += addSeparator(theCurrentCharge)
+    })
 
     // REGUL
-    txt += `RÉGULARISATION
-Total de vos charges réelles = ordure ménagère + électricité + eau
-= ${charges(data).garbage().toFixed(2)} + ${charges(data)
-        .electricity()
-        .toFixed(2)} + ${charges(data).water().toFixed(2)}
-= ${real.toFixed(2)}
-Vos charges actuelles sont de ${current.toFixed(2)} € 
-La différence avec vos charges réelles est donc de ${difference.toFixed(2)} €
-Nombre de mois pris en compte (selon votre date d'arrivé dans votre logement): ${monthsOfLiving.toFixed(
-        2
-    )} mois.
-Ce que vous devez ou ce que la SCI vous doit si négatif
-= nombre de mois x difference
-= ${monthsOfLiving.toFixed(2)} x ${difference.toFixed(2)}
-= ${debt.toFixed(
-        2
-    )} € à virer (RIB à retrouver via le lien ci-dessous) ou qui vous sera viré si négatif dans ce cas merce d'envoyer votre RIB à lydstyl@gmail.com.`
-    txt += separator
+    txt += getRegul(tenant)
 
     const householdExpenses = charges(data).household()
     txt += getNewChargesDetail(tenant, householdExpenses)
