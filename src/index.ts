@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { Data, AllData, Tenant } from '../data/dataType'
-import { allData } from '../data/data'
 
+import { allData } from '../data/data'
+import getMapedData from './getMapedData'
 import { charges } from './charges'
 import {
     getMonthOfLiving,
@@ -10,21 +10,8 @@ import {
     getNewCharges,
 } from './chargesRegularisation'
 
-const mapData = (allData: AllData, tenant: Tenant): Data => ({
-    garbage: { ...allData.forAllTenants.garbage, ...tenant.garbage },
-    electricity: {
-        ...allData.forAllTenants.electricity,
-        ...tenant.electricity,
-    },
-    water: { ...allData.forAllTenants.water, ...tenant.water },
-    household: {
-        ...allData.forAllTenants.household,
-        ...tenant.household,
-    },
-})
-
 allData.tenants.forEach((tenant) => {
-    const data = mapData(allData, tenant)
+    const data = getMapedData(allData, tenant)
     const current: number = tenant.current
     const real: number =
         charges(data).garbage() +
@@ -79,17 +66,18 @@ Ce que vous devez ou ce que la SCI vous doit si négatif
 
     const householdExpenses = charges(data).household()
 
-    txt += `En prenant en compte les futures charges de ménages (${householdExpenses.toFixed(
-        2
-    )} €)
-Vos nouvelles charges ${getNewCharges(
-        real + householdExpenses,
-        current
-    ).toFixed(2)} €`
-    txt += separator
-
     // NEW CHARGES
     txt += `NOUVELLES CHARGES
+En prenant en compte les futures charges de ménages (${householdExpenses.toFixed(
+        2
+    )} €)
+Vos nouvelles charges sont de ${getNewCharges(
+        real + householdExpenses,
+        current
+    ).toFixed(2)} €.`
+    txt += separator
+
+    txt += `FACTURES ET RIB
 Les justificatifs et le RIB sont accessibles ici : https://www.dropbox.com/scl/fo/18wau76f8hf05wi79q5ae/h?dl=0&rlkey=7xkia2z17301d3jf7bdijuz2u`
     txt += separator
 
