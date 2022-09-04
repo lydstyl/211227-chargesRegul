@@ -49,3 +49,29 @@ export const getWaterCharge = (waterData: WaterData): number => {
 
     return costPerCubic * waterConsumption
 }
+
+export const hasWater = (data: WaterData) => {
+    const water = () => {
+        return getWaterCharge(data)
+    }
+    const waterDetail = () =>
+        `EAU
+Les dernières factures d'eau indiquent :${data.waterInvoices.map(
+            (invoice) =>
+                ` ${invoice.price.toFixed(
+                    2
+                )} € pour ${invoice.consumption.toFixed(2)} m3`
+        )}
+Nous pouvons donc en déduire le cout d'1m3 
+= somme des couts en € / somme des consomations en m3
+= ${getCostPerCubic(data.waterInvoices).toFixed(2)} € / m3
+En utilisant vos relevés, nous pouvons en déduire votre consomation mensuelle en m3 
+= ${getAllMonthlyWaterConsumptions(data.meterReadings).toFixed(2)} m3
+Vos charges d'eau mensuelle = votre consomation mensuelle x cout d'1m3
+= ${getWaterCharge(data).toFixed(2)} €`
+
+    return {
+        water,
+        waterDetail,
+    }
+}

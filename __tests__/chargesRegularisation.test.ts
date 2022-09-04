@@ -4,7 +4,7 @@ import {
     getMonthOfLiving,
     getDebt,
     getNewCharges,
-} from '../src/charges'
+} from '../src/chargesRegularisation'
 
 describe('Regularization.', () => {
     it('Calculate total charges', () => {

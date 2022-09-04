@@ -3,7 +3,12 @@
 import { Data, AllData, Tenant } from '../data/dataType'
 import { allData } from '../data/data'
 
-import { charges, getMonthOfLiving, getDebt, getNewCharges } from './charges'
+import { charges } from './charges'
+import {
+    getMonthOfLiving,
+    getDebt,
+    getNewCharges,
+} from './chargesRegularisation'
 
 const mapData = (allData: AllData, tenant: Tenant): Data => ({
     garbage: { ...allData.forAllTenants.garbage, ...tenant.garbage },
