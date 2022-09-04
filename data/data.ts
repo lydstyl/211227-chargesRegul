@@ -26,8 +26,10 @@ export interface WaterData {
 }
 export interface HouseholdData {
     invoices: number[]
+    rate: number
 }
 export interface Data {
+    // or Maped Data
     garbage: GarbageData
     electricity: ElectricityData
     water: WaterData
@@ -39,17 +41,20 @@ interface Garbage {
 interface Water {
     waterInvoices: WaterInvoice[]
 }
-interface ForAllTenantsElectricity {
+interface AllElectricity {
     from: string
     to: string
     amounts: number[]
+}
+interface Invoices {
+    invoices: number[]
 }
 interface ForAllTenants {
     endDate: string
     garbage: Garbage
     water: Water
-    electricity: ForAllTenantsElectricity
-    household: HouseholdData
+    electricity: AllElectricity
+    household: Invoices
 }
 interface TenantWater {
     meterReadings: MeterReading[]
@@ -57,16 +62,17 @@ interface TenantWater {
 interface TenantGarbage {
     garbageRate: number
 }
-interface TenantElectricity {
+interface Rate {
     rate: number
 }
-interface Tenant {
+export interface Tenant {
     name: string
     arrivalDate: string
     current: number // current charge
     garbage: TenantGarbage
     water: TenantWater
-    electricity: TenantElectricity
+    electricity: Rate
+    household: Rate
 }
 export interface AllData {
     forAllTenants: ForAllTenants
@@ -83,6 +89,10 @@ const data = {
         },
     ],
 }
+
+const garbageRate = 1 / 6
+const householdRate = 1 / 4
+const houseHoldEstimate = 60 * 12
 
 export const allData: AllData = {
     forAllTenants: {
@@ -108,7 +118,7 @@ export const allData: AllData = {
             invoices: [
                 31.5, // produits, balais...
                 27.6, // 2 clés
-                60, // prestation estimation
+                houseHoldEstimate,
             ],
         },
     },
@@ -119,7 +129,7 @@ export const allData: AllData = {
 
             current: 25,
 
-            garbage: { garbageRate: 1 / 6 },
+            garbage: { garbageRate },
             water: {
                 meterReadings: [
                     {
@@ -128,7 +138,8 @@ export const allData: AllData = {
                     },
                 ],
             },
-            electricity: { rate: 1 / 6 },
+            electricity: { rate: garbageRate },
+            household: { rate: householdRate },
         },
         // {
         //     name: 'Lebrun',
@@ -178,8 +189,9 @@ export const testData1: Data = {
         invoices: [
             31.5, // produits, balais...
             27.6, // 2 clés
-            60, // prestation estimation
+            houseHoldEstimate,
         ],
+        rate: householdRate,
     },
 }
 
@@ -212,8 +224,9 @@ export const testData2: Data = {
         invoices: [
             31.5, // produits, balais...
             27.6, // 2 clés
-            60, // prestation estimation
+            houseHoldEstimate,
         ],
+        rate: householdRate,
     },
 }
 

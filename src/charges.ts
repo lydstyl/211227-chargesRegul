@@ -75,15 +75,19 @@ Vos charges d'eau mensuelle = votre consomation mensuelle x cout d'1m3
         waterDetail,
     }
 }
-const hasHousehold = (data: HouseholdData) => {
-    const household = () => {
-        return getHouseholdCharge(data)
-    }
+const hasHousehold = (data: HouseholdData, rate: number) => {
+    const houseHoldTotalCharges: number = getHouseholdCharge(data)
+    const household = () => (houseHoldTotalCharges * rate) / 12
+
     const householdDetail = () =>
         `MÉNAGE
-Voir les dernières factures, devis ou estimations (clés, produits, prestations) ...
-${household()}
-`
+Voici les dernières estimations de dépenses (clés, produits d'entretien, prestations) : ${data.invoices.map(
+            (invoice) => ` ${invoice} €`
+        )}. Pour un total de ${houseHoldTotalCharges.toFixed(2)} €.
+charges de ménage mensuelles 
+= charges de ménage x votre taux / 12        
+= ${houseHoldTotalCharges.toFixed(2)} x ${rate} / 12
+= ${household().toFixed(2)} €`
 
     return {
         household,
@@ -95,7 +99,7 @@ export const charges = (data: Data) => ({
     ...hasGarbage(data.garbage.garbageCharge, data.garbage.garbageRate),
     ...hasElectricity(data.electricity),
     ...hasWater(data.water),
-    ...hasHousehold(data.household),
+    ...hasHousehold(data.household, data.household.rate),
 })
 
 // charges regularization

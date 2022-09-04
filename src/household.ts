@@ -1,5 +1,7 @@
-export const getHouseholdCharge = (waterData: HouseholdData): number => {
-    const charges = 100
+import { HouseholdData } from '../data/data'
+import { sumArray } from './utils/sumArray'
+export const getHouseholdCharge = (houseHoldData: HouseholdData): number => {
+    const charges = sumArray(houseHoldData.invoices)
 
     return charges
 }
