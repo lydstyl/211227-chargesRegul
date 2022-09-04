@@ -2,28 +2,13 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
 import { allData } from '../data/data'
-import getMapedData from './getMapedData'
 import { charges } from './charges'
-import {
-    getMonthOfLiving,
-    getDebt,
-    getNewCharges,
-} from './chargesRegularisation'
+import getTenantData from './tenantData'
+import getNewChargesDetail from './getNewCharges'
 
 allData.tenants.forEach((tenant) => {
-    const data = getMapedData(allData, tenant)
-    const current: number = tenant.current
-    const real: number =
-        charges(data).garbage() +
-        charges(data).electricity() +
-        charges(data).water()
-    const difference = real - current
-    const monthsOfLiving = getMonthOfLiving(
-        tenant.arrivalDate,
-        allData.forAllTenants.endDate
-    )
-    const debt = getDebt(difference, monthsOfLiving)
-    const separator = '\n-------------------------------------------\n\n'
+    const { data, current, real, difference, monthsOfLiving, debt, separator } =
+        getTenantData(tenant)
 
     let txt = ``
 
@@ -61,25 +46,10 @@ Ce que vous devez ou ce que la SCI vous doit si négatif
 = ${debt.toFixed(
         2
     )} € à virer (RIB à retrouver via le lien ci-dessous) ou qui vous sera viré si négatif dans ce cas merce d'envoyer votre RIB à lydstyl@gmail.com.`
-
     txt += separator
 
     const householdExpenses = charges(data).household()
-
-    // NEW CHARGES
-    txt += `NOUVELLES CHARGES
-En prenant en compte les futures charges de ménages (${householdExpenses.toFixed(
-        2
-    )} €)
-Vos nouvelles charges sont de ${getNewCharges(
-        real + householdExpenses,
-        current
-    ).toFixed(2)} €.`
-    txt += separator
-
-    txt += `FACTURES ET RIB
-Les justificatifs et le RIB sont accessibles ici : https://www.dropbox.com/scl/fo/18wau76f8hf05wi79q5ae/h?dl=0&rlkey=7xkia2z17301d3jf7bdijuz2u`
-    txt += separator
+    txt += getNewChargesDetail(tenant, householdExpenses)
 
     console.log(txt)
 })
