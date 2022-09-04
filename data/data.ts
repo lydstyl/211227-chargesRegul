@@ -1,16 +1,5 @@
 import { AllData, Data } from './dataType'
 
-const data = {
-    forAllTenants: {
-        taxeOrdureMénagère: 1403,
-    },
-    tenants: [
-        {
-            name: 'Zurek',
-        },
-    ],
-}
-
 const garbageRate = 1 / 6
 const householdRate = 1 / 4
 const houseHoldEstimate = 60 * 12
@@ -118,5 +107,3 @@ export const testData2: Data = {
         rate: householdRate,
     },
 }
-
-export default data
