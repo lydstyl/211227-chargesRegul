@@ -2,34 +2,28 @@ interface GarbageData {
     garbageCharge: number
     garbageRate: number
 }
-
 export interface ElectricityData {
     from: string // frDate
     to: string // frDate
     amounts: number[]
     rate: number
 }
-
 export interface Reading {
     date: string // frDate
     index: number // m3
 }
-
 export interface MeterReading {
     first: Reading
     second: Reading
 }
-
 export interface WaterInvoice {
     price: number
     consumption: number // m3
 }
-
 export interface WaterData {
     waterInvoices: WaterInvoice[]
     meterReadings: MeterReading[] // first and second read for each water meter
 }
-
 export interface HouseholdData {
     invoices: number[]
 }
@@ -38,6 +32,45 @@ export interface Data {
     electricity: ElectricityData
     water: WaterData
     household: HouseholdData
+}
+interface Garbage {
+    garbageCharge: number
+}
+interface Water {
+    waterInvoices: WaterInvoice[]
+}
+interface ForAllTenantsElectricity {
+    from: string
+    to: string
+    amounts: number[]
+}
+interface ForAllTenants {
+    endDate: string
+    garbage: Garbage
+    water: Water
+    electricity: ForAllTenantsElectricity
+    household: HouseholdData
+}
+interface TenantWater {
+    meterReadings: MeterReading[]
+}
+interface TenantGarbage {
+    garbageRate: number
+}
+interface TenantElectricity {
+    rate: number
+}
+interface Tenant {
+    name: string
+    arrivalDate: string
+    current: number // current charge
+    garbage: TenantGarbage
+    water: TenantWater
+    electricity: TenantElectricity
+}
+interface AllData {
+    forAllTenants: ForAllTenants
+    tenants: Tenant[]
 }
 
 const data = {
@@ -51,7 +84,7 @@ const data = {
     ],
 }
 
-export const allData = {
+export const allData: AllData = {
     forAllTenants: {
         endDate: '31/12/2021',
         garbage: {
@@ -141,6 +174,13 @@ export const testData1: Data = {
             },
         ],
     },
+    household: {
+        invoices: [
+            31.5, // produits, balais...
+            27.6, // 2 clés
+            60, // prestation estimation
+        ],
+    },
 }
 
 export const testData2: Data = {
@@ -166,6 +206,13 @@ export const testData2: Data = {
                 first: { date: '01/09/2021', index: 10 },
                 second: { date: '01/01/2022', index: 22 },
             },
+        ],
+    },
+    household: {
+        invoices: [
+            31.5, // produits, balais...
+            27.6, // 2 clés
+            60, // prestation estimation
         ],
     },
 }
