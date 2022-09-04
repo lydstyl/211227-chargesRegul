@@ -9,24 +9,18 @@ import getNewChargesDetail from './getNewCharges'
 
 allData.tenants.forEach((tenant) => {
     const { data, separator } = getTenantData(tenant)
-
-    function addSeparator(txt: string) {
-        return (txt += separator)
-    }
-
-    let txt = addSeparator('')
-
-    txt += addSeparator(`Votre nom : ${tenant.name}`)
-
+    const theCharges: Charges = charges(data)
     const getChargesNames: string[] = [
         'waterDetail',
         'electricityDetail',
         'garbageDetail',
         'householdDetail',
     ]
+    let txt = addSeparator('')
 
-    const theCharges: Charges = charges(data)
+    txt += addSeparator(`Votre nom : ${tenant.name}`)
 
+    // CHARGES DETAILS
     getChargesNames.forEach((getChargeName: string) => {
         const theCurrentCharge = (theCharges as any)[getChargeName]()
         txt += addSeparator(theCurrentCharge)
@@ -35,8 +29,13 @@ allData.tenants.forEach((tenant) => {
     // REGUL
     txt += getRegul(tenant)
 
+    // NEW CHARGES
     const householdExpenses = charges(data).household()
     txt += getNewChargesDetail(tenant, householdExpenses)
 
     console.log(txt)
+
+    function addSeparator(txt: string) {
+        return (txt += separator)
+    }
 })
