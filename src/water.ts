@@ -1,4 +1,4 @@
-import { MeterReading, WaterInvoice, WaterData } from '../data/data'
+import { MeterReading, WaterInvoice, WaterData } from '../data/dataType'
 import { frToDate, getDays } from './utils/days'
 
 export const getCostPerCubic = (waterInvoices: WaterInvoice[]): number => {

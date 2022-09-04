@@ -1,5 +1,10 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
-import { ElectricityData, WaterData, Data, HouseholdData } from '../data/data' // interfaces
+import {
+    ElectricityData,
+    WaterData,
+    Data,
+    HouseholdData,
+} from '../data/dataType' // interfaces
 
 import { frToDate, getDays } from './utils/days'
 import { sumArray } from './utils/sumArray'

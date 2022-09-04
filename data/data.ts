@@ -1,83 +1,4 @@
-interface GarbageData {
-    garbageCharge: number
-    garbageRate: number
-}
-export interface ElectricityData {
-    from: string // frDate
-    to: string // frDate
-    amounts: number[]
-    rate: number
-}
-export interface Reading {
-    date: string // frDate
-    index: number // m3
-}
-export interface MeterReading {
-    first: Reading
-    second: Reading
-}
-export interface WaterInvoice {
-    price: number
-    consumption: number // m3
-}
-export interface WaterData {
-    waterInvoices: WaterInvoice[]
-    meterReadings: MeterReading[] // first and second read for each water meter
-}
-export interface HouseholdData {
-    invoices: number[]
-    rate: number
-}
-export interface Data {
-    // or Maped Data
-    garbage: GarbageData
-    electricity: ElectricityData
-    water: WaterData
-    household: HouseholdData
-}
-interface Garbage {
-    garbageCharge: number
-}
-interface Water {
-    waterInvoices: WaterInvoice[]
-}
-interface AllElectricity {
-    from: string
-    to: string
-    amounts: number[]
-}
-interface Invoices {
-    invoices: number[]
-}
-interface ForAllTenants {
-    endDate: string
-    garbage: Garbage
-    water: Water
-    electricity: AllElectricity
-    household: Invoices
-}
-interface TenantWater {
-    meterReadings: MeterReading[]
-}
-interface TenantGarbage {
-    garbageRate: number
-}
-interface Rate {
-    rate: number
-}
-export interface Tenant {
-    name: string
-    arrivalDate: string
-    current: number // current charge
-    garbage: TenantGarbage
-    water: TenantWater
-    electricity: Rate
-    household: Rate
-}
-export interface AllData {
-    forAllTenants: ForAllTenants
-    tenants: Tenant[]
-}
+import { AllData, Data } from './dataType'
 
 const data = {
     forAllTenants: {
@@ -115,11 +36,7 @@ export const allData: AllData = {
             ],
         },
         household: {
-            invoices: [
-                31.5, // produits, balais...
-                27.6, // 2 clés
-                houseHoldEstimate,
-            ],
+            invoices: [31.5, 27.6, houseHoldEstimate],
         },
     },
     tenants: [
@@ -133,8 +50,8 @@ export const allData: AllData = {
             water: {
                 meterReadings: [
                     {
-                        first: { date: '01/09/2021', index: 10 },
-                        second: { date: '01/01/2022', index: 22 },
+                        first: { date: '30/08/2021', index: 712 },
+                        second: { date: '10/09/2022', index: 712 + 50 },
                     },
                 ],
             },
@@ -166,11 +83,7 @@ export const testData1: Data = {
         ],
     },
     household: {
-        invoices: [
-            31.5, // produits, balais...
-            27.6, // 2 clés
-            houseHoldEstimate,
-        ],
+        invoices: [31.5, 27.6, houseHoldEstimate],
         rate: householdRate,
     },
 }
@@ -201,11 +114,7 @@ export const testData2: Data = {
         ],
     },
     household: {
-        invoices: [
-            31.5, // produits, balais...
-            27.6, // 2 clés
-            houseHoldEstimate,
-        ],
+        invoices: [31.5, 27.6, houseHoldEstimate],
         rate: householdRate,
     },
 }

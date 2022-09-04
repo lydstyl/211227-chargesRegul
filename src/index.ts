@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { Data, allData, AllData, Tenant } from '../data/data'
+import { Data, AllData, Tenant } from '../data/dataType'
+import { allData } from '../data/data'
 
 import { charges, getMonthOfLiving, getDebt, getNewCharges } from './charges'
 
