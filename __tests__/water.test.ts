@@ -46,7 +46,7 @@ describe('Water.', () => {
     it('Show water charges details.', () => {
         const detail = charges(testData2).waterDetail()
 
-        expect(detail).toContain('WATER')
+        expect(detail).toContain('EAU')
         expect(detail).toContain('31.72')
     })
 })

@@ -29,10 +29,15 @@ export interface WaterData {
     waterInvoices: WaterInvoice[]
     meterReadings: MeterReading[] // first and second read for each water meter
 }
+
+export interface HouseholdData {
+    invoices: number[]
+}
 export interface Data {
     garbage: GarbageData
     electricity: ElectricityData
     water: WaterData
+    household: HouseholdData
 }
 
 const data = {
@@ -54,15 +59,24 @@ export const allData = {
         },
         water: {
             waterInvoices: [
-                { price: 10, consumption: 20 },
-                { price: 20, consumption: 20 },
-                { price: 30, consumption: 20 },
+                { price: 2118.88, consumption: 69 + 145 + 153 },
+                { price: 890.54, consumption: 148 },
             ],
         },
         electricity: {
-            from: '01/01/2021',
-            to: '31/12/2021',
-            amounts: [100, 265],
+            from: '26/07/2021',
+            to: '26/07/2022',
+            amounts: [
+                16.46, 20.12, 16.34, 16.55, 21.58, 21.29, 3.55, 20.19, 20.31,
+                19.68, 21, 20.02,
+            ],
+        },
+        household: {
+            invoices: [
+                31.5, // produits, balais...
+                27.6, // 2 clés
+                60, // prestation estimation
+            ],
         },
     },
     tenants: [
@@ -83,26 +97,26 @@ export const allData = {
             },
             electricity: { rate: 1 / 6 },
         },
-        {
-            name: 'Lebrun',
-            arrivalDate: '01/06/2021',
-            current: 25,
+        // {
+        //     name: 'Lebrun',
+        //     arrivalDate: '01/06/2021',
+        //     current: 25,
 
-            garbage: { garbageRate: 1 / 6 },
-            water: {
-                meterReadings: [
-                    {
-                        first: { date: '01/09/2021', index: 10 },
-                        second: { date: '01/01/2022', index: 22 },
-                    },
-                    {
-                        first: { date: '01/09/2021', index: 10 },
-                        second: { date: '01/01/2022', index: 22 },
-                    },
-                ],
-            },
-            electricity: { rate: 1 / 6 },
-        },
+        //     garbage: { garbageRate: 1 / 6 },
+        //     water: {
+        //         meterReadings: [
+        //             {
+        //                 first: { date: '01/09/2021', index: 10 },
+        //                 second: { date: '01/01/2022', index: 22 },
+        //             },
+        //             {
+        //                 first: { date: '01/09/2021', index: 10 },
+        //                 second: { date: '01/01/2022', index: 22 },
+        //             },
+        //         ],
+        //     },
+        //     electricity: { rate: 1 / 6 },
+        // },
     ],
 }
 

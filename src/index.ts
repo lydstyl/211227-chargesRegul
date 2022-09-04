@@ -88,14 +88,23 @@ Ce que vous devez ou ce que la SCI vous doit si négatif
 = ${monthsOfLiving.toFixed(2)} x ${difference.toFixed(2)}
 = ${debt.toFixed(
         2
-    )} € à virer (RIB ci-joint) ou qui vous sera viré si négatif dans ce cas merce d'envoyer votre RIB à lydstyl@gmail.com.
+    )} € à virer (RIB ci-joint) ou qui vous sera viré si négatif dans ce cas merce d'envoyer votre RIB à lydstyl@gmail.com.`
 
-Vos nouvelles charges ${getNewCharges(real, current).toFixed(2)} €
+    txt += separator
+
+    const householdExpenses = 60 / 4
+
+    txt += `
+    En prenant en compte les futures charges de ménages (${householdExpenses} €)
+    Vos nouvelles charges ${getNewCharges(
+        real + householdExpenses,
+        current
+    ).toFixed(2)} €
             `
     txt += separator
 
     txt +=
-        'Les justificatifs sont accessibles ici : https://drive.google.com/drive/folders/1L0OMQrmE9W1-uUQl1Rwuh_qWL1616m9x?usp=sharing'
+        'Les justificatifs sont accessibles ici : https://www.dropbox.com/scl/fo/18wau76f8hf05wi79q5ae/h?dl=0&rlkey=7xkia2z17301d3jf7bdijuz2u'
 })
 
 console.log(txt)

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
-import { ElectricityData, WaterData, Data } from '../data/data' // interfaces
+import { ElectricityData, WaterData, Data, HouseholdData } from '../data/data' // interfaces
 
 import { frToDate, getDays } from './utils/days'
 import { sumArray } from './utils/sumArray'
@@ -11,6 +11,7 @@ import {
     getCostPerCubic,
     getAllMonthlyWaterConsumptions,
 } from './water'
+import { getHouseholdCharge } from './household'
 
 const hasGarbage = (garbageCharge: number, rate: number) => ({
     garbage: () => getGarbageCharge(garbageCharge, rate),
@@ -37,12 +38,13 @@ Cela fait un total de ${totalAmount.toFixed(2)} € dépensé en ${getDays(
             frToDate(from),
             frToDate(to)
         )} jours.
-Le coup par mois est donc de ${totalElectricityPerMonth(
+Nous pouvons donc optenir le cout par jour puis celui pour 1 an et le diviser par 12 pour obtenir le cout par mois.
+Le cout par mois est donc de ${totalElectricityPerMonth(
             totalAmount,
             days
         ).toFixed(2)} € pour l'ensemble des occupants.
 Vos charges d'électricité sont donc de 
-= coup par mois x votre taux d'occupation 
+= cout par mois x votre taux d'utilisation d'électricité
 = ${electricityPerMonth.toFixed(2)} x ${rate.toFixed(2)} 
 = ${electricity().toFixed(2)} €`,
     }
@@ -62,10 +64,10 @@ Les dernières factures d'eau indiquent :${data.waterInvoices.map(
         )}
 Nous pouvons donc en déduire le cout d'1m3 
 = somme des couts en € / somme des consomations en m3
-= ${getCostPerCubic(data.waterInvoices).toFixed(2)}
+= ${getCostPerCubic(data.waterInvoices).toFixed(2)} € / m3
 En utilisant vos relevés, nous pouvons en déduire votre consomation mensuelle en m3 
 = ${getAllMonthlyWaterConsumptions(data.meterReadings).toFixed(2)} m3
-Vous charges d'eau mensuelle = votre consomation mensuelle x cout d'1m3
+Vos charges d'eau mensuelle = votre consomation mensuelle x cout d'1m3
 = ${getWaterCharge(data).toFixed(2)} €`
 
     return {
@@ -73,11 +75,27 @@ Vous charges d'eau mensuelle = votre consomation mensuelle x cout d'1m3
         waterDetail,
     }
 }
+const hasHousehold = (data: HouseholdData) => {
+    const household = () => {
+        return getHouseholdCharge(data)
+    }
+    const householdDetail = () =>
+        `MÉNAGE
+Voir les dernières factures, devis ou estimations (clés, produits, prestations) ...
+${household()}
+`
+
+    return {
+        household,
+        householdDetail,
+    }
+}
 
 export const charges = (data: Data) => ({
     ...hasGarbage(data.garbage.garbageCharge, data.garbage.garbageRate),
     ...hasElectricity(data.electricity),
     ...hasWater(data.water),
+    ...hasHousehold(data.household),
 })
 
 // charges regularization
