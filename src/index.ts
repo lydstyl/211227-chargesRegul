@@ -1,39 +1,19 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { Data, allData } from '../data/data'
+import { Data, allData, AllData, Tenant } from '../data/data'
 
 import { charges, getMonthOfLiving, getDebt, getNewCharges } from './charges'
 
-const mapData = (
-    allData: {
-        forAllTenants: any
-        tenants?: {
-            name: string
-            arrivalDate: string
-            garbage: { garbageRate: number }
-            water: {
-                meterReadings: {
-                    first: { date: string; index: number }
-                    second: { date: string; index: number }
-                }[]
-            }
-            electricity: { rate: number }
-        }[]
-    },
-    tenant: {
-        name?: string
-        arrivalDate?: string
-        garbage: any
-        water: any
-        electricity: any
-    }
-): Data => ({
+const mapData = (allData: AllData, tenant: Tenant): Data => ({
     garbage: { ...allData.forAllTenants.garbage, ...tenant.garbage },
     electricity: {
         ...allData.forAllTenants.electricity,
         ...tenant.electricity,
     },
     water: { ...allData.forAllTenants.water, ...tenant.water },
+    household: {
+        ...allData.forAllTenants.household,
+    },
 })
 
 let txt = ``

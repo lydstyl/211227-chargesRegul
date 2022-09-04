@@ -68,7 +68,7 @@ interface Tenant {
     water: TenantWater
     electricity: TenantElectricity
 }
-interface AllData {
+export interface AllData {
     forAllTenants: ForAllTenants
     tenants: Tenant[]
 }
