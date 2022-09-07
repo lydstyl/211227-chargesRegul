@@ -6,7 +6,7 @@ const houseHoldEstimate = 60 * 12
 
 export const allData: AllData = {
     forAllTenants: {
-        endDate: '31/12/2022',
+        endDate: '07/09/2022',
         garbage: {
             garbageCharge: 1403,
         },
@@ -30,22 +30,30 @@ export const allData: AllData = {
     },
     tenants: [
         {
-            name: 'Zurek',
-            arrivalDate: '01/06/2018',
+            name: 'Lebrun',
+            arrivalDate: '07/06/2021',
 
-            current: 25,
+            current: 15,
 
-            garbage: { garbageRate },
+            // meter reading no rate
             water: {
                 meterReadings: [
                     {
-                        first: { date: '30/08/2021', index: 712 },
-                        second: { date: '10/09/2022', index: 712 + 50 },
+                        first: { date: '18/11/2021', index: 0 },
+                        second: { date: '07/09/2022', index: 11 },
+                    },
+                    {
+                        first: { date: '08/09/2021', index: 132 },
+                        second: { date: '07/09/2022', index: 138 },
                     },
                 ],
             },
-            electricity: { rate: garbageRate },
-            household: { rate: householdRate },
+
+            // building rate 6 appartments or more for Fruitier, T3 and Salvado ?
+            garbage: { garbageRate: 1 / 6 },
+            // 32 B rate 5 persons or 4 appartements ?
+            electricity: { rate: 1 / 4 },
+            household: { rate: 1 / 4 },
         },
     ],
 }

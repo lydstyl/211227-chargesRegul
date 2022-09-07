@@ -31,7 +31,7 @@ Cela fait un total de ${totalAmount.toFixed(2)} € dépensé en ${getDays(
             frToDate(from),
             frToDate(to)
         )} jours.
-Nous pouvons donc optenir le cout par jour puis celui pour 1 an et le diviser par 12 pour obtenir le cout par mois.
+Nous pouvons donc obtenir le cout par jour puis celui pour 1 an et le diviser par 12 pour obtenir le cout par mois.
 Le cout par mois est donc de ${totalElectricityPerMonth(
             totalAmount,
             days
