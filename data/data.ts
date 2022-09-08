@@ -24,7 +24,7 @@ export const allData: AllData = {
             ],
         },
         household: {
-            invoices: [31.5, 27.6, 60.93],
+            invoices: [31.5, 27.6, 60.93 * 12],
         },
     },
     tenants: [
@@ -47,8 +47,8 @@ export const allData: AllData = {
             // building rate 6 appartments or more for Fruitier, T3 and Salvado ?
             garbage: { garbageRate: buildingRate },
             // 32 B rate 5 persons or 4 appartements ?
-            electricity: { rate: rate32B },
-            household: { rate: rate32B },
+            electricity: { rate: 0 },
+            household: { rate: 0 },
         },
         {
             name: 'Martel',
@@ -66,8 +66,8 @@ export const allData: AllData = {
             },
 
             garbage: { garbageRate: buildingRate },
-            electricity: { rate: rate32B },
-            household: { rate: rate32B },
+            electricity: { rate: 0 },
+            household: { rate: 0 },
         },
         {
             name: 'Zurek',
@@ -174,8 +174,8 @@ export const testData1: Data = {
         ],
     },
     household: {
-        invoices: [31.5, 27.6, houseHoldEstimate],
-        rate: householdRate,
+        invoices: [31.5, 27.6, 60.93 * 12],
+        rate: rate32B,
     },
 }
 
@@ -205,7 +205,7 @@ export const testData2: Data = {
         ],
     },
     household: {
-        invoices: [31.5, 27.6, houseHoldEstimate],
-        rate: householdRate,
+        invoices: [31.5, 27.6, 60.93 * 12],
+        rate: rate32B,
     },
 }
