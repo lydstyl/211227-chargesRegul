@@ -7,7 +7,7 @@ export const allData: AllData = {
     forAllTenants: {
         endDate: '07/09/2022',
         garbage: {
-            garbageCharge: 1403,
+            garbageCharge: 1440,
         },
         water: {
             waterInvoices: [

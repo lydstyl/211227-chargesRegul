@@ -35,7 +35,7 @@ Nous pouvons donc obtenir le cout par jour puis celui pour 1 an et le diviser pa
 Le cout par mois est donc de ${totalElectricityPerMonth(
             totalAmount,
             days
-        ).toFixed(2)} € pour l'ensemble des occupants.
+        ).toFixed(2)} € pour l'ensemble des consommateurs d'électricité.
 Vos charges d'électricité sont donc de 
 = cout par mois x votre taux d'utilisation d'électricité
 = ${electricityPerMonth.toFixed(2)} x ${rate.toFixed(2)} 
