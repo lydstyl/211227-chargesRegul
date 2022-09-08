@@ -1,8 +1,7 @@
 import { AllData, Data } from './dataType'
 
-const garbageRate = 1 / 6
-const householdRate = 1 / 4
-const houseHoldEstimate = 60 * 12
+const buildingRate = 1 / 6
+const rate32B = 1 / 4
 
 export const allData: AllData = {
     forAllTenants: {
@@ -25,7 +24,7 @@ export const allData: AllData = {
             ],
         },
         household: {
-            invoices: [31.5, 27.6, houseHoldEstimate],
+            invoices: [31.5, 27.6, 60.93],
         },
     },
     tenants: [
@@ -50,10 +49,10 @@ export const allData: AllData = {
             },
 
             // building rate 6 appartments or more for Fruitier, T3 and Salvado ?
-            garbage: { garbageRate: 1 / 6 },
+            garbage: { garbageRate: buildingRate },
             // 32 B rate 5 persons or 4 appartements ?
-            electricity: { rate: 1 / 4 },
-            household: { rate: 1 / 4 },
+            electricity: { rate: rate32B },
+            household: { rate: rate32B },
         },
     ],
 }
