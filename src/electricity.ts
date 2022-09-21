@@ -31,13 +31,13 @@ Cela fait un total de ${totalAmount.toFixed(2)} € dépensé en ${getDays(
             frToDate(from),
             frToDate(to)
         )} jours.
-Nous pouvons donc obtenir le cout par jour puis celui pour 1 an et le diviser par 12 pour obtenir le cout par mois.
-Le cout par mois est donc de ${totalElectricityPerMonth(
+Nous pouvons donc obtenir le coût par jour puis celui pour 1 an et le diviser par 12 pour obtenir le coût par mois.
+Le coût par mois est donc de ${totalElectricityPerMonth(
             totalAmount,
             days
         ).toFixed(2)} € pour l'ensemble des consommateurs d'électricité.
 Vos charges d'électricité sont donc de 
-= cout par mois x votre taux d'utilisation d'électricité
+= coût par mois x votre taux d'utilisation d'électricité
 = ${electricityPerMonth.toFixed(2)} x ${rate.toFixed(2)} 
 = ${electricity().toFixed(2)} €`,
     }

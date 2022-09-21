@@ -18,7 +18,8 @@ allData.tenants.forEach((tenant) => {
     ]
     let txt = addSeparator('')
 
-    txt += addSeparator(`Votre nom : ${tenant.name}`)
+    txt += addSeparator(`DÉTAILS DES CALCULS.
+Nom : ${tenant.name}.`)
 
     // CHARGES DETAILS
     getChargesNames.forEach((getChargeName: string) => {

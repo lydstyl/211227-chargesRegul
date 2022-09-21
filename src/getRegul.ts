@@ -14,15 +14,15 @@ Total de vos charges réelles = ordure ménagère + électricité + eau
 = ${real.toFixed(2)}
 Vos charges actuelles sont de ${current.toFixed(2)} € 
 La différence avec vos charges réelles est donc de ${difference.toFixed(2)} €
-Nombre de mois pris en compte (selon votre date d'arrivé dans votre logement): ${monthsOfLiving.toFixed(
+Nombre de mois pris en compte (selon votre date d'arrivée dans votre logement): ${monthsOfLiving.toFixed(
         2
     )} mois.
 Ce que vous devez ou ce que la SCI vous doit si négatif
-= nombre de mois x difference
+= nombre de mois x différence
 = ${monthsOfLiving.toFixed(2)} x ${difference.toFixed(2)}
 = ${debt.toFixed(
         2
-    )} € à virer (RIB à retrouver via le lien ci-dessous) ou qui vous sera viré si négatif dans ce cas merce d'envoyer votre RIB à lydstyl@gmail.com.`
+    )} € à virer (RIB à retrouver via le lien ci-dessous) ou qui vous sera viré si négatif dans ce cas merci d'envoyer votre RIB à lydstyl@gmail.com.`
     txt += separator
 
     return txt

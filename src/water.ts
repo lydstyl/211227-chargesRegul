@@ -62,12 +62,12 @@ Les dernières factures d'eau indiquent :${data.waterInvoices.map(
                     2
                 )} € pour ${invoice.consumption.toFixed(2)} m3`
         )}
-Nous pouvons donc en déduire le cout d'1m3 
-= somme des couts en € / somme des consommations en m3
+Nous pouvons donc en déduire le coût d'1m3 
+= somme des coûts en € / somme des consommations en m3
 = ${getCostPerCubic(data.waterInvoices).toFixed(2)} € / m3
 En utilisant vos relevés, nous pouvons en déduire votre consommation mensuelle en m3 
 = ${getAllMonthlyWaterConsumptions(data.meterReadings).toFixed(2)} m3
-Vos charges d'eau mensuelle = votre consommation mensuelle x cout d'1m3
+Vos charges d'eau mensuelle = votre consommation mensuelle x coût d'1m3
 = ${getWaterCharge(data).toFixed(2)} €`
 
     return {
