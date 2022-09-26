@@ -24,7 +24,10 @@ export const allData: AllData = {
             ],
         },
         household: {
-            invoices: [31.5, 27.6, 60.93 * 12],
+            invoices: [
+                31.5, //27.6,
+                60.93 * 12,
+            ],
         },
     },
     tenants: [
