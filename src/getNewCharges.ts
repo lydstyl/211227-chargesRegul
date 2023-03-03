@@ -7,13 +7,7 @@ const getNewChargesDetail = (tenant: Tenant, householdExpenses: number) => {
 
     let txt = ''
     txt += `NOUVELLES CHARGES
-En prenant en compte les futures charges de ménages (${householdExpenses.toFixed(
-        2
-    )} €)
-Vos nouvelles charges sont de ${getNewCharges(
-        real + householdExpenses,
-        current
-    ).toFixed(2)} €.`
+Vos nouvelles charges sont de ${getNewCharges(real, current).toFixed(2)} €.`
     txt += separator
 
     txt += `FACTURES ET RIB

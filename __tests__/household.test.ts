@@ -9,7 +9,7 @@ describe('Household.', () => {
     it('Can calculate charges.', () => {
         const result = HOUSEHOLD
 
-        expect(HOUSEHOLD.toFixed(2)).toEqual('16.23')
+        expect(HOUSEHOLD.toFixed(2)).toEqual('16.23') // 16.46 ??
     })
 
     it('Can show charge detail.', () => {

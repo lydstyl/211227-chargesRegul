@@ -14,7 +14,7 @@ Total de vos charges réelles = ordure ménagère + électricité + eau
 = ${real.toFixed(2)}
 Vos charges actuelles sont de ${current.toFixed(2)} € 
 La différence avec vos charges réelles est donc de ${difference.toFixed(2)} €
-Nombre de mois pris en compte (selon votre date d'arrivée dans votre logement): ${monthsOfLiving.toFixed(
+Nombre de mois pris en compte (selon la date du début de la période de calcul): ${monthsOfLiving.toFixed(
         2
     )} mois.
 Ce que vous devez ou ce que la SCI vous doit si négatif

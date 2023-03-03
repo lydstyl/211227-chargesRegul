@@ -10,7 +10,7 @@ export const hasHousehold = (data: HouseholdData, rate: number) => {
 
     const householdDetail = () =>
         `MÉNAGE
-Voici les dernières estimations de dépenses (clés, produits d'entretien, prestations) : ${data.invoices.map(
+Voici les dernières estimations de dépenses sur 1 an : ${data.invoices.map(
             (invoice) => ` ${invoice} €`
         )}. Pour un total de ${houseHoldTotalCharges.toFixed(2)} €.
 charges de ménage mensuelles 
