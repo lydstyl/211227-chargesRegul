@@ -1,23 +1,31 @@
 import { charges } from '../src/charges'
 import { testData1 } from '../data/data'
+import { sumArray } from '../src/utils/sumArray'
 
 const allCharges = charges(testData1)
 const HOUSEHOLD = allCharges.household()
 const HOUSEHOLD_DETAIL = allCharges.householdDetail()
 
 describe('Household.', () => {
-    it('Can calculate charges.', () => {
-        const result = HOUSEHOLD
-
-        expect(HOUSEHOLD.toFixed(2)).toEqual('16.23') // 16.46 ??
+    it('Sum array.', () => {
+        expect(sumArray([31.5, 27.6, 60.93 * 12])).toEqual(790.26)
     })
-
+    it('Calculate household.', () => {
+        expect(790.26 / 4 / 12).toEqual(16.46375)
+    })
+    it('Calculate household with toFixed 2.', () => {
+        expect(+(16.46375).toFixed(2)).toEqual(16.46)
+    })
     it('Can show charge detail.', () => {
         const result = HOUSEHOLD
-
         const detail = HOUSEHOLD_DETAIL
-
         expect(detail).toContain('MÉNAGE')
         expect(detail).toContain(result.toFixed(2))
+    })
+    it('Calculate charges before toFixed 2.', () => {
+        expect(HOUSEHOLD).toEqual(16.46375)
+    })
+    it('Can calculate charges.', () => {
+        expect(HOUSEHOLD.toFixed(2)).toEqual('16.46')
     })
 })

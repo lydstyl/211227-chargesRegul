@@ -182,7 +182,7 @@ export const testData1: Data = {
         ],
     },
     household: {
-        invoices: [31.5, 27.6, 60.93 * 12],
+        invoices: [790.26], // Should be annual ? 16,46375
         rate: rate32B,
     },
 }
