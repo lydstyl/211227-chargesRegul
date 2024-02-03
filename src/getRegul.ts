@@ -7,7 +7,7 @@ const getRegul = (tenant: Tenant) => {
         getTenantData(tenant)
     let txt = ''
     txt += `RÉGULARISATION
-Total de vos charges réelles = ordure ménagère + électricité + eau
+Total de vos charges réelles = ordure ménagère + électricité + eau + ménage
 = ${charges(data).garbage().toFixed(2)} + ${charges(data)
         .electricity()
         .toFixed(2)} + ${charges(data).water().toFixed(2)}

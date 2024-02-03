@@ -3,37 +3,60 @@ import { AllData, Data } from './dataType'
 const buildingRate = 1 / 6
 const rate32B = 1 / 4
 
+// for 1 year or can be more or less ?
 export const allData: AllData = {
     forAllTenants: {
-        // endDate: '07/09/2022',
-        endDate: '03/03/2023', // march 2023
+        endDate: '03/02/2024', // Used for getMonthOfLiving(tenant.arrivalDate,allData.forAllTenants.endDate)
         garbage: {
-            garbageCharge: 1440, // march 2023
+            // Duration must be 1 year
+            garbageCharge: 1396, // Cotisation 2023
         },
         water: {
+            // Duration do not matter
+            // Automation possible with BNP CSV
             waterInvoices: [
-                // { price: 2118.88, consumption: 69 + 145 + 153 },
-                // { price: 890.54, consumption: 148 },
-                { price: 706.91, consumption: 110 }, // march 2023
+                { price: 681.11, consumption: 102 }, // Last invoice is consumption from january 2023 to jully 2023
             ],
         },
         electricity: {
-            // from: '26/07/2021',
-            // to: '26/07/2022',
-            // amounts: [
-            //     16.46, 20.12, 16.34, 16.55, 21.58, 21.29, 3.55, 20.19, 20.31,
-            //     19.68, 21, 20.02,
-            // ],
-            from: '26/08/2022', // march 2023
-            to: '26/02/2023', // march 2023
-            amounts: [20.29, 20.91, 20.26, 21.59, 21.62, 23.94, 22.44], // march 2023
+            // Duration do not matter
+            // Automation possible with BNP CSV
+            from: '26/02/2023',
+            to: '26/01/2024',
+            amounts: [
+                22.44, 26.02, 19.87, 19.45, 19.87, 19.45, 19.04, 21.14, 19.86,
+                23.34, 21.61, 17.62,
+            ],
         },
         household: {
-            // invoices: [31.5, 60.93 * 12],
-            invoices: [((61.03 + 60.93 + 60.93 + 60.93 + 62.05) * 12) / 5], // march 2023 sept22 to january23 avg year deduction
+            // Duration must be 1 year
+            // Automation possible with BNP CSV
+            invoices: [61.55 * 10, 63.35], // february 2023 to january 2024 (august 2023 is missing here)
         },
     },
     tenants: [
+        {
+            name: 'Zurek',
+            arrivalDate: '01/01/2021', ////////// used for what ?
+            current: 54, // current charges
+            water: {
+                // Duration do not matter
+                meterReadings: [
+                    {
+                        first: { date: '30/08/2021', index: 712 },
+                        second: { date: '07/09/2022', index: 740 },
+                    },
+                    // {
+                    //     first: { date: '07/09/2022', index: 740 },
+                    //     second: { date: '27/01/2024', index: 743 }, // impossible ?!
+                    // },
+                ],
+            },
+
+            garbage: { garbageRate: buildingRate },
+            electricity: { rate: rate32B },
+            household: { rate: rate32B },
+        },
         // {
         //     name: 'Alaoui',
         //     arrivalDate: '01/01/2021', ////////// ?
@@ -75,25 +98,7 @@ export const allData: AllData = {
         //     electricity: { rate: 0 },
         //     household: { rate: 0 },
         // },
-        // {
-        //     name: 'Zurek',
-        //     arrivalDate: '01/01/2021', ////////// ?
 
-        //     current: 25,
-
-        //     water: {
-        //         meterReadings: [
-        //             {
-        //                 first: { date: '30/08/2021', index: 712 },
-        //                 second: { date: '07/09/2022', index: 740 },
-        //             },
-        //         ],
-        //     },
-
-        //     garbage: { garbageRate: buildingRate },
-        //     electricity: { rate: rate32B },
-        //     household: { rate: rate32B },
-        // },
         // {
         //     name: 'Leduc',
         //     arrivalDate: '01/01/2021', ////////// ?
@@ -113,27 +118,27 @@ export const allData: AllData = {
         //     electricity: { rate: rate32B },
         //     household: { rate: rate32B },
         // },
-        {
-            name: 'Salvado',
-            // arrivalDate: '01/01/2021',
-            // arrivalDate: '07/09/2022', // march 2023 todo try 23/09/2022 (nouveau compteur eau)
-            arrivalDate: '23/09/2022', // march 2023 todo try 23/09/2022 (nouveau compteur eau)
+        // {
+        //     name: 'Salvado',
+        //     // arrivalDate: '01/01/2021',
+        //     // arrivalDate: '07/09/2022', // march 2023 todo try 23/09/2022 (nouveau compteur eau)
+        //     arrivalDate: '23/09/2022', // march 2023 todo try 23/09/2022 (nouveau compteur eau)
 
-            current: 80, // march 2023
+        //     current: 80, // march 2023
 
-            water: {
-                meterReadings: [
-                    {
-                        first: { date: '23/09/2022', index: 0 }, // march 2023
-                        second: { date: '03/03/2023', index: 25.6 }, // march 2023
-                    },
-                ],
-            },
+        //     water: {
+        //         meterReadings: [
+        //             {
+        //                 first: { date: '23/09/2022', index: 0 }, // march 2023
+        //                 second: { date: '03/03/2023', index: 25.6 }, // march 2023
+        //             },
+        //         ],
+        //     },
 
-            garbage: { garbageRate: buildingRate },
-            electricity: { rate: rate32B },
-            household: { rate: rate32B },
-        },
+        //     garbage: { garbageRate: buildingRate },
+        //     electricity: { rate: rate32B },
+        //     household: { rate: rate32B },
+        // },
         // {
         //     name: 'Lebrun',
         //     arrivalDate: '07/06/2021',

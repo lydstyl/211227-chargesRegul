@@ -4,9 +4,11 @@ export const getHouseholdCharge = (houseHoldData: HouseholdData): number => {
     const charges = sumArray(houseHoldData.invoices)
     return charges
 }
+export const household0 = (houseHoldTotalCharges: number, rate: number) =>
+    (houseHoldTotalCharges * rate) / 12
 export const hasHousehold = (data: HouseholdData, rate: number) => {
     const houseHoldTotalCharges: number = getHouseholdCharge(data)
-    const household = () => (houseHoldTotalCharges * rate) / 12
+    const household = () => household0(houseHoldTotalCharges, rate)
 
     const householdDetail = () =>
         `MÉNAGE
