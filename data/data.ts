@@ -222,3 +222,58 @@ export const testData2: Data = {
         rate: rate32B,
     },
 }
+export const testData3: AllData = {
+    forAllTenants: {
+        endDate: '03/02/2024', // Used for getMonthOfLiving(tenant.arrivalDate,allData.forAllTenants.endDate)
+        garbage: {
+            // Duration must be 1 year
+            garbageCharge: 1396, // Cotisation 2023
+        },
+        water: {
+            // Duration do not matter
+            // Automation possible with BNP CSV
+            waterInvoices: [
+                { price: 681.11, consumption: 102 }, // Last invoice is consumption from january 2023 to jully 2023
+            ],
+        },
+        electricity: {
+            // Duration do not matter
+            // Automation possible with BNP CSV
+            from: '26/02/2023',
+            to: '26/01/2024',
+            amounts: [
+                22.44, 26.02, 19.87, 19.45, 19.87, 19.45, 19.04, 21.14, 19.86,
+                23.34, 21.61, 17.62,
+            ],
+        },
+        household: {
+            // Duration must be 1 year
+            // Automation possible with BNP CSV
+            invoices: [61.55 * 10, 63.35], // february 2023 to january 2024 (august 2023 is missing here)
+        },
+    },
+    tenants: [
+        {
+            name: 'Zurek',
+            arrivalDate: '01/01/2021', ////////// used for what ?
+            current: 54, // current charges
+            water: {
+                // Duration do not matter
+                meterReadings: [
+                    {
+                        first: { date: '30/08/2021', index: 712 },
+                        second: { date: '07/09/2022', index: 740 },
+                    },
+                    // {
+                    //     first: { date: '07/09/2022', index: 740 },
+                    //     second: { date: '27/01/2024', index: 743 }, // impossible ?!
+                    // },
+                ],
+            },
+
+            garbage: { garbageRate: buildingRate },
+            electricity: { rate: rate32B },
+            household: { rate: rate32B },
+        },
+    ],
+}

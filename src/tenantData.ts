@@ -10,7 +10,8 @@ const getTenantData = (tenant: Tenant) => {
     const real: number =
         charges(data).garbage() +
         charges(data).electricity() +
-        charges(data).water()
+        charges(data).water() +
+        charges(data).household()
     const difference = real - current
     const monthsOfLiving = getMonthOfLiving(
         tenant.arrivalDate,

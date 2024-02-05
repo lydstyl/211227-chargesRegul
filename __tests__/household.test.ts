@@ -17,10 +17,8 @@ describe('Household.', () => {
         expect(+(16.46375).toFixed(2)).toEqual(16.46)
     })
     it('Can show charge detail.', () => {
-        const result = HOUSEHOLD
-        const detail = HOUSEHOLD_DETAIL
-        expect(detail).toContain('MÉNAGE')
-        expect(detail).toContain(result.toFixed(2))
+        expect(HOUSEHOLD_DETAIL).toContain('MÉNAGE')
+        expect(HOUSEHOLD_DETAIL).toContain(HOUSEHOLD.toFixed(2))
     })
     it('Calculate charges before toFixed 2.', () => {
         expect(HOUSEHOLD).toEqual(16.46375)

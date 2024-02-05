@@ -10,7 +10,9 @@ const getRegul = (tenant: Tenant) => {
 Total de vos charges réelles = ordure ménagère + électricité + eau + ménage
 = ${charges(data).garbage().toFixed(2)} + ${charges(data)
         .electricity()
-        .toFixed(2)} + ${charges(data).water().toFixed(2)}
+        .toFixed(2)} + ${charges(data).water().toFixed(2)} + ${charges(data)
+        .household()
+        .toFixed(2)}
 = ${real.toFixed(2)}
 Vos charges actuelles sont de ${current.toFixed(2)} € 
 La différence avec vos charges réelles est donc de ${difference.toFixed(2)} €
