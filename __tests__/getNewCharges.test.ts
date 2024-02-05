@@ -49,9 +49,9 @@ describe('New charges.', () => {
         const result = getNewCharges(11.5, 7)
         expect(result).toEqual(12)
     })
-    it('Contain "NOUVELLES CHARGES"', () => {
+    it('Contain "NOUVELLES CHARGES ARRONDIES"', () => {
         const result = getNewChargesDetail(tenant, 14.14)
-        expect(result).toContain('NOUVELLES CHARGES')
+        expect(result).toContain('NOUVELLES CHARGES ARRONDIES')
     })
     it('Contain 54.', () => {
         const result = getNewChargesDetail(tenant, 14.14)
