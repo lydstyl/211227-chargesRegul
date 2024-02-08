@@ -11,7 +11,7 @@ Vos nouvelles charges sont de ${getNewCharges(real, current).toFixed(2)} €.`
     txt += separator
 
     txt += `FACTURES ET RIB
-Les justificatifs et le RIB sont accessibles ici : https://www.dropbox.com/scl/fo/18wau76f8hf05wi79q5ae/h?dl=0&rlkey=7xkia2z17301d3jf7bdijuz2u`
+Les justificatifs et le RIB sont accessibles ici : https://www.dropbox.com/scl/fo/3qkr1g2fro89cgnrybgv9/h?rlkey=zfxoutwhckslq97wq327ee2rd&dl=0`
     txt += separator
 
     return txt
